@@ -1,7 +1,7 @@
 import csv
 import os
-filepath = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__))),"Resources","budget_data.csv")
-with open("Resources/budget_data.csv", newline='') as csvfile:
+filepath = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__))),"..","Resources","budget_data.csv")
+with open(filepath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
     numberOfMonths = 0
