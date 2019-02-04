@@ -1,7 +1,7 @@
 import os
 import re
 
-input_path = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__))), "..", "Resources", "paragraph_2.txt")
+input_path = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__))), "..", "Resources", "paragraph_1.txt")
 
 txtFile = open(input_path, 'r')
 txt = txtFile.read()
@@ -14,11 +14,11 @@ for i in range(len(paragraphs)):
     wordCount = 0
     letterCount = 0
     for i in range(len(sentences)):
-        #wordSplit = sentences[i].split(" ")
-        wordSplit = re.split("- ", sentences[i])
+        wordSplit = sentences[i].split(" ")
         wordCount += len(wordSplit)
         for j in range(len(wordSplit)):
             letterCount += len(wordSplit[j])
+            print(wordSplit[j])
 
     averageSentenceLength = wordCount / sentenceCount
     averageLetterCount = format(letterCount / wordCount, ".1f")
