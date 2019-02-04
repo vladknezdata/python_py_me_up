@@ -21,12 +21,9 @@ with open(input_path, newline="") as csvfile:
     headers = next(csvreader)
     headers.insert(2, "Last Name")
 
-
     newData = []
     for row in csvreader:
         newData.append([row[0], nameConversion(row[1])[0], nameConversion(row[1])[1], dateOfBirthConvrsion(row[2]), ssnConversion(row[3]), abb[row[4]]])
-for i in range(len(newData)):
-    print(newData[i])
 
 with open(output_path, 'w', newline='') as f:
     csvwriter = csv.writer(f)
