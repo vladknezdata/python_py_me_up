@@ -2,8 +2,10 @@ import os
 import csv
 from us_state_abbrev import us_state_abbrev as abb
 
-input_path = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)),"..", "Resources", "employee_data.csv"))
-output_path = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)),"..", "Resources", "new_employee_data.csv"))
+input_path = os.path.join(
+    os.path.join(os.path.dirname(os.path.abspath(__file__)),"..", "Resources", "employee_data.csv"))
+output_path = os.path.join(
+    os.path.join(os.path.dirname(os.path.abspath(__file__)),"..", "Resources", "new_employee_data.csv"))
 
 def nameConversion(name):
     return name.split(" ")
@@ -23,7 +25,8 @@ with open(input_path, newline="") as csvfile:
 
     newData = []
     for row in csvreader:
-        newData.append([row[0], nameConversion(row[1])[0], nameConversion(row[1])[1], dateOfBirthConvrsion(row[2]), ssnConversion(row[3]), abb[row[4]]])
+        newData.append([row[0], nameConversion(row[1])[0], nameConversion(row[1])[1],
+        dateOfBirthConvrsion(row[2]), ssnConversion(row[3]), abb[row[4]]])
 
 with open(output_path, 'w', newline='') as f:
     csvwriter = csv.writer(f)

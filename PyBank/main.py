@@ -1,6 +1,8 @@
 import csv
 import os
+
 filepath = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__))),"..","Resources","budget_data.csv")
+
 with open(filepath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
@@ -13,7 +15,7 @@ with open(filepath, newline='') as csvfile:
     for row in csvreader:
         numberOfMonths += 1
         netAmount += int(row[1])
-        if int(row[1]) > greatestIncrease:
+        if int(row[1]) > greatestIncrease: # getting the min/max values
             greatestIncrease = int(row[1])
             greatestIncreaseMonth = row[0]
         if int(row[1]) < greatestDecrease:
@@ -21,12 +23,11 @@ with open(filepath, newline='') as csvfile:
             greatestDecreaseMonth = row[0]
 
     averagechange = netAmount / numberOfMonths
-    averagechange = averagechange * 100 // 1 / 100
 
 print("Financial analysis")
 print("------------------")
 print("Total Months: ", numberOfMonths)
 print("Total: $", netAmount)
-print("Average Change: ", averagechange)
+print("Average Change: ", format(averagechange, ".2f"))
 print("Greatest Increase in Profits: ", greatestIncreaseMonth, " ($", greatestIncrease, ")")
 print("Greatest Decrease in Profits: ", greatestDecreaseMonth, " ($", greatestDecrease, ")")

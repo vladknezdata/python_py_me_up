@@ -6,19 +6,20 @@ input_path = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)
 txtFile = open(input_path, 'r')
 txt = txtFile.read()
 
-paragraphs = txt.split("\n\n")
-for i in range(len(paragraphs)):
+paragraphs = txt.split("\n\n") #paragraphs
+
+for i in range(len(paragraphs)): 
     
-    sentences = re.split("(?<=[.!?]) +", paragraphs[i])
+    sentences = re.split("(?<=[.!?]) +", paragraphs[i]) #sentences
     sentenceCount = len(sentences)
     wordCount = 0
     letterCount = 0
-    for i in range(len(sentences)):
-        wordSplit = sentences[i].split(" ")
+
+    for j in range(len(sentences)): #words
+        wordSplit = sentences[j].split()
         wordCount += len(wordSplit)
-        for j in range(len(wordSplit)):
-            letterCount += len(wordSplit[j])
-            print(wordSplit[j])
+        for k in range(len(wordSplit)): #letters
+            letterCount += len(wordSplit[k])
 
     averageSentenceLength = wordCount / sentenceCount
     averageLetterCount = format(letterCount / wordCount, ".1f")
@@ -28,4 +29,4 @@ for i in range(len(paragraphs)):
     print("Aproximate word count: ", wordCount)
     print("Aproximate sentence count: ", sentenceCount)
     print("Average letter count: ", averageLetterCount)
-    print("Average letter count: ", averageSentenceLength)
+    print("Average sentence length: ", averageSentenceLength)

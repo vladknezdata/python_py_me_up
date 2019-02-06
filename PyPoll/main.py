@@ -5,6 +5,7 @@ input_path = os.path.join(os.path.join(
     os.path.dirname(os.path.abspath(__file__)),"..", "Resources", 'election_data.csv'))
 output_path = os.path.join(os.path.join(
     os.path.dirname(os.path.abspath(__file__)),"..", "Resources", 'ElectionResults.txt'))
+
 with open(input_path, newline="") as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
@@ -14,7 +15,7 @@ with open(input_path, newline="") as csvfile:
 
     next(csvreader, None) # skip the headers
 
-    for row in csvreader:
+    for row in csvreader: # counting the votes
         totalNumberOfVotes += 1
         if row[2] in candidates:
            votes[candidates.index(row[2])] += 1
@@ -40,6 +41,7 @@ with open(output_path, 'w', newline="") as textfile:
     textfile.write("-------------------------\n")
 
 #   opening created txt and printing it
+
 with open(output_path, newline="") as f:
     for line in f:
         print(line, end="")
