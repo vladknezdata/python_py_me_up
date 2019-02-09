@@ -11,19 +11,26 @@ with open(filepath, newline='') as csvfile:
     netAmount = 0
     greatestIncrease = 0
     greatestDecrease = 0
+    change = 0
+    
     next(csvreader, None) # skips the headers
 
     for row in csvreader:
         numberOfMonths += 1
         netAmount += int(row[1])
+  
+        if numberOfMonths > 1:
+            change += int(row[1]) - previousMonth
         if int(row[1]) > greatestIncrease: # getting the min/max values
             greatestIncrease = int(row[1])
             greatestIncreaseMonth = row[0]
         if int(row[1]) < greatestDecrease:
             greatestDecrease = int(row[1])
             greatestDecreaseMonth = row[0]
+        previousMonth = int(row[1])
 
-    averagechange = netAmount / numberOfMonths
+    averagechange = change / (numberOfMonths - 1)
+
 
 #   creating a txt file
 
