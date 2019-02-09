@@ -2,7 +2,8 @@ import csv
 import os
 
 filepath = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__))),"..","Resources","budget_data.csv")
-
+output_path = os.path.join(os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),"..", "Resources", 'FinancialAnalysis.txt'))
 with open(filepath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
@@ -24,10 +25,20 @@ with open(filepath, newline='') as csvfile:
 
     averagechange = netAmount / numberOfMonths
 
-print("Financial analysis")
-print("------------------")
-print("Total Months: ", numberOfMonths)
-print("Total: $", netAmount)
-print("Average Change: ", format(averagechange, ".2f"))
-print("Greatest Increase in Profits: ", greatestIncreaseMonth, " ($", greatestIncrease, ")")
-print("Greatest Decrease in Profits: ", greatestDecreaseMonth, " ($", greatestDecrease, ")")
+#   creating a txt file
+
+with open(output_path, 'w', newline="") as textfile:
+
+    textfile.write("Financial analysis\n")
+    textfile.write("------------------\n")
+    textfile.write("Total Months: " + str(numberOfMonths) + "\n")
+    textfile.write("Total: $" + str(netAmount) + "\n")
+    textfile.write("Average Change: " + format(averagechange, ".2f") + "\n")
+    textfile.write("Greatest Increase in Profits: " + str(greatestIncreaseMonth) + " ($" + str(greatestIncrease) + ")\n")
+    textfile.write("Greatest Decrease in Profits: " + str(greatestDecreaseMonth) + " ($" + str(greatestDecrease) + ")\n")
+
+#   opening created txt and printing it
+
+with open(output_path, newline="") as f:
+    for line in f:
+        print(line, end="")
